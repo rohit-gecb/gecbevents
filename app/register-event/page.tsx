@@ -150,31 +150,28 @@ export default function RegisterEventPage() {
         throw new Error(`Photo upload failed: ${uploadError.message}`);
       }
 
-      const insertData =
+      const insertError =
         role === "student"
-          ? {
-              first_name: student.firstName,
-              last_name: student.lastName,
-              mobile: student.mobile,
-              email: student.email,
-              year: student.year,
-              branch: student.branch,
-              photo_path: photoPath,
-            }
-          : {
-              first_name: guest.firstName,
-              last_name: guest.lastName,
-              position: guest.position,
-              company: guest.company,
-              photo_path: photoPath,
-            };
-
-      const targetTable =
-        role === "student" ? "student_registrations" : "guest_registrations";
-
-      const { error: insertError } = await supabase
-        .from(targetTable)
-        .insert(insertData);
+          ? (
+              await supabase.from("student_registrations").insert({
+                first_name: student.firstName,
+                last_name: student.lastName,
+                mobile: student.mobile,
+                email: student.email,
+                year: student.year,
+                branch: student.branch,
+                photo_path: photoPath,
+              })
+            ).error
+          : (
+              await supabase.from("guest_registrations").insert({
+                first_name: guest.firstName,
+                last_name: guest.lastName,
+                position: guest.position,
+                company: guest.company,
+                photo_path: photoPath,
+              })
+            ).error;
 
       if (insertError) {
         await supabase.storage.from("event-photos").remove([photoPath]);
