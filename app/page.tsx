@@ -995,7 +995,7 @@ function Footer() {
         {/* Bottom Footer */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-[#fffef6]/10 pt-6 text-xs text-[#fffef6]/50 sm:flex-row">
           <p>
-            © 2026 Government Engineering College Barmer (Tech Team). All rights reserved.
+            © This website is managed & maintained by Rohit Suthar ( Tech Team GECB ) | All rights reserved.
           </p>
 
           <div className="flex gap-5">
