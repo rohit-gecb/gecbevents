@@ -208,7 +208,7 @@ const TOPPERS = [
     name: "Yogender",
     branch: "Computer Science and AI & ML",
     score: "Highest CGPA",
-    image: "/college/toppers/topper2.jpeg",
+    image: "/college/toppers/topper2.png",
   },
   {
     rank: 3,
